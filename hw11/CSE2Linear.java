@@ -13,7 +13,7 @@ public class CSE2Linear{
     public static void main(String[] args){
 
         //declare and allocate arrays
-        int[] grades = new int[5000];
+        int[] grades = new int[15];
         
         //prompt user for grade
         System.out.println("Please enter the grades: ");
@@ -30,10 +30,10 @@ public class CSE2Linear{
         
         
         print(grades);//print initial array
-        searcher(grades);//search initial
+        binarysearcher(grades);//search initial
         int[] newgrades = sort(grades);//call scrambler
         print(newgrades);//print scrambled array
-        searcher(newgrades);//search scrambled
+        linearsearcher(newgrades);//search scrambled
         
         
     }
@@ -65,16 +65,63 @@ public class CSE2Linear{
         }while(true);
         return value;
     }
-    public static void searcher(int[] grades){
+    public static void binarysearcher(int[] grades){
+        //Scanner
+        Scanner myScanner = new Scanner( System.in );
+        //prompt user
+        System.out.println("Enter a grade to be searched for: ");
+        int check = myScanner.nextInt();
+        
+        //binary search
+        //initialize search vars
+        int u = 7;
+        int j = 1;
+        int t = 7;
+        while(true){
+            if(check>grades[u]){
+                if(u%2==0){//if u even
+                    u=u+(t/2);
+                }
+                if(u%2==1){
+                    u=u+(t/2)+1;//move pointer u up
+                }
+            }
+            if(check<grades[u]){
+                if(u%2==0){//if u even
+                    u=u-(t/2);//move pointer u down
+                }
+                if(u%2==1){// if u odd
+                    u=u-(t/2)+1;//move pointer u down
+                }
+            }
+            if(check==grades[u]){//found grade
+                System.out.println(check+" is one of the final grades.");
+                System.out.println("Iterations used: "+j);
+                break;
+            }
+            if(t>2){//amount that can be searched
+                t=(t+1)/2;
+            }
+            System.out.print(u);
+            j+=1;//iteration counter
+            if(j==1000){//ends code if not found
+                System.out.println("There are no instances of the grade "+check);
+                break;
+            }
+        }
+        
+    }
+    public static void linearsearcher(int[] grades){
         //Scanner
         Scanner myScanner = new Scanner( System.in );  
         //Prompt user for grade to be searched for
         System.out.println("Enter a grade to be searched for: " );
-        //save input to string
+        //save input to integer
         int check = myScanner.nextInt();
         
+        
         //linear search
-        for(int i=0; i<16; i++){
+        for(int i=0; i<15; i++){
             if(grades[i]==check){
                 int j=i+1;
                 System.out.println(check+" is one of the final grades.");
