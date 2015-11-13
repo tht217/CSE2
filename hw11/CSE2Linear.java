@@ -88,10 +88,10 @@ public class CSE2Linear{
             }
             if(check<grades[u]){
                 if(u%2==0){//if u even
-                    u=u-(t/2);//move pointer u down
+                    u=u-(t/2)+1;//move pointer u down
                 }
                 if(u%2==1){// if u odd
-                    u=u-(t/2)+1;//move pointer u down
+                    u=u-(t/2);//move pointer u down
                 }
             }
             if(check==grades[u]){//found grade
@@ -102,7 +102,6 @@ public class CSE2Linear{
             if(t>2){//amount that can be searched
                 t=(t+1)/2;
             }
-            System.out.print(u);
             j+=1;//iteration counter
             if(j==1000){//ends code if not found
                 System.out.println("There are no instances of the grade "+check);
@@ -128,7 +127,7 @@ public class CSE2Linear{
                 System.out.println("Iterations used:"+j);
                 break;
             }
-            if(i==15){
+            if(i==14){
                 System.out.println("There are no instances of the grade "+check);
             }
         }
